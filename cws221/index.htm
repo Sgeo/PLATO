@@ -25,7 +25,8 @@
                 DosBoxLoader.startExe("cws.exe")));
         emulator.setCallbacks({
             before_run() {
-                Module.websocket = {url: 'wss://'};
+                if(!Module.websocket) Module.websocket = {};
+                Module.websocket.url = 'wss://';
             }
         });
         emulator.start({ });
