@@ -7,21 +7,25 @@
         let oldArray = new Uint8Array(messageEvent.data);
         for(let char of oldArray) {
             if(mode === null) {
-                newBuffer.push(char);
-                if(char === 0xFF || char === 0x0D) {
+                if(char !== 0xFF && char !== 0x0D) {
+                    newBuffer.push(char);
+                } else {
                     mode = char;
                 }
             } else {
-                if(mode === 0xFF && char !== 0xFF) {
+                if(mode === 0xFF && char == 0xFF) {
                     newBuffer.push(char);
-                } else if(mode === 0x0D && char !== 0x00) {
-                    newBuffer.push(char);
+                } else if(mode === 0x0D) {
+                    newBuffer.push(0x0D);
+                    if(char !== 0x00) {
+                        newBuffer.push(char);
+                    }
                 }
                 mode = null;
             }
         }
         let newArray = Uint8Array.from(newBuffer);
-        messageEvent.buffer = newArray.buffer;
+        messageEvent.data = newArray.buffer;
         return messageEvent;
     };
 

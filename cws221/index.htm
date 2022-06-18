@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CYBIS Workstation Software 2.2.1</title>
+</head>
+
+<body>
+    <canvas id="canvas" style="width: 50%; height: 50%; display: block; margin: 0 auto;"></canvas>
+    <script src="../wsHook.js"></script>
+    <script src="../telnet-websocket.js"></script>
+    <script src="../dosbox/browserfs.min.js"></script>
+    <script src="../dosbox/loader.js"></script>
+    <script>
+        var emulator = new Emulator(document.querySelector("#canvas"),
+            null,
+            new DosBoxLoader(DosBoxLoader.emulatorJS("../dosbox/dosbox.wasm.js"),
+                DosBoxLoader.emulatorWASM("../dosbox/dosbox.wasm"),
+                DosBoxLoader.nativeResolution(640, 480),
+                DosBoxLoader.mountZip("c",
+                    DosBoxLoader.fetchFile("CYBIS Workstation Software 2.2.1",
+                        "cws221.zip")),
+                DosBoxLoader.startExe("cws.exe")))
+        emulator.start({ });
+        function locateAdditionalFiles(filename) {
+            return filename;
+        }
+    </script>
+</body>
+
+</html>
