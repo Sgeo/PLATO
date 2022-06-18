@@ -21,7 +21,8 @@
                 DosBoxLoader.mountZip("c",
                     DosBoxLoader.fetchFile("CYBIS Workstation Software 2.2.1",
                         "cws221.zip")),
-                DosBoxLoader.startExe("cws.exe")))
+                DosBoxLoader.mountFile("dosbox.conf", DosBoxLoader.localFile("DosBox.conf", "[serial]\nserial1=modem listenport:0")),
+                DosBoxLoader.startExe("cws.exe")));
         emulator.start({ });
         function locateAdditionalFiles(filename) {
             return filename;
