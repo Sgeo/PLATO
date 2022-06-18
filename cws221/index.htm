@@ -23,10 +23,12 @@
                         "cws221.zip")),
                 DosBoxLoader.mountFile("dosbox.conf", DosBoxLoader.localFile("DosBox.conf", "[serial]\nserial1=modem listenport:0")),
                 DosBoxLoader.startExe("cws.exe")));
+        emulator.setCallbacks({
+            before_run() {
+                Module.websocket = {url: 'wss://'};
+            }
+        });
         emulator.start({ });
-        function locateAdditionalFiles(filename) {
-            return filename;
-        }
     </script>
     <div style="text-align: center;">
         <p>This is a copy of CYBIS Workstation 2.2.1, running in DOSBox.</p>
