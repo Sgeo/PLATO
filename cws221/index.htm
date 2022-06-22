@@ -12,6 +12,7 @@
     <script src="../telnet-websocket.js"></script>
     <script src="../dosbox/browserfs.min.js"></script>
     <script src="../dosbox/loader.js"></script>
+    <script src="../refresh-files.js"></script>
     <script>
         var emulator = new Emulator(document.querySelector("#canvas"),
             null,
@@ -36,6 +37,10 @@
         <p>This software, from 1992, allowed home users with an IBM PC to connect to PLATO networks.</p>
         <p>Compared to <a href="https://www.cyber1.org/pterm.asp">PTerm</a>, CYBIS Workstation 2.2.1 can print locally (using lesson "print"), use 80 column mode, and upload and download files via the Kermit protocol.</p>
         <p>However, it is running in an emulated 56k modem connection. It also does not support Gooch Synthetic Woodwind emulation, and probably does not support microtutor.</p>
+    </div>
+    <div style="position: absolute; top:0%; right: 25%">
+        <button onclick="refresh_files('#files');">Show/Refresh files</button>
+        <div id="files"></div>
     </div>
 </body>
 
